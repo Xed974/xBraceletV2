@@ -80,7 +80,7 @@ ESX.RegisterUsableItem('pince', function(source)
                     if (xPlayer.getJob().name) == 'police' then TriggerClientEvent('esx:showAdvancedNotification', xPlayers[i], "Central", "Information", ("Signal perdu du bracelet de : ~r~%s~s~"):format(name), "CHAR_CHAT_CALL", 2) end
                 end 
             else
-                ESX.ShowNotification("Vous n\'avez pas de ~r~bracelet sur vous~s~.")
+                TriggerClientEvent('esx:showNotification', source, 'Vous n\'avez pas de ~r~bracelet sur vous~s~.')
             end
         end
     end)
