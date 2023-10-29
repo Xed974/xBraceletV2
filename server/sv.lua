@@ -5,10 +5,10 @@ RegisterNetEvent('xBracelet:check')
 AddEventHandler('xBracelet:check', function(pPos, name)
     local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
-    local identifier = xPlayer.getIdentifier()
     local xPlayers = ESX.GetPlayers()
 
     if (not xPlayer) then return end
+    local identifier = xPlayer.getIdentifier()
     MySQL.Async.fetchAll("SELECT bracelet FROM users WHERE identifier = '"..identifier.."'", {}, function(result)
         if (result) then
             for k,v in pairs(result) do
