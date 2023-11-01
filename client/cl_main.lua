@@ -74,26 +74,24 @@ Citizen.CreateThread(function()
         local wait = 1000
 
         if ESX.PlayerData.job.name == "police" then
-            for k in pairs(Config.Position.AddBracelet) do
-                local pos = Config.Position.AddBracelet
-                local pPos = GetEntityCoords(PlayerPedId())
-                local dst = Vdist(pPos.x, pPos.y, pPos.z, pos[k].x, pos[k].y, pos[k].z)
+            local pos = Config.Position.AddBracelet
+            local pPos = GetEntityCoords(PlayerPedId())
+            local dst = Vdist(pPos.x, pPos.y, pPos.z, pos.x, pos.y, pos.z)
 
-                if dst <= 3.0 then
-                    wait = 0
-                    DrawMarker(21, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0.0,0.0,0.0, 0.3, 0.3, 0.3, 0, 0, 0, 200, 0, true, p19, 0)
-                end
+            if dst <= 3.0 then
+                wait = 0
+                DrawMarker(21, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0.0,0.0,0.0, 0.3, 0.3, 0.3, 0, 0, 0, 200, 0, true, p19, 0)
+            end
 
-                if dst <= 2.0 then
-                    wait = 0
-                    if not open then ESX.ShowHelpNotification("Appuyez sur ~INPUT_CONTEXT~ pour mettre un bracelet électronique.") end
-                    if IsControlJustPressed(1, 51) then
-                        FreezeEntityPosition(PlayerPedId(), true)
-                        MenuBracelet()
-                    end
+            if dst <= 2.0 then
+                wait = 0
+                if not open then ESX.ShowHelpNotification("Appuyez sur ~INPUT_CONTEXT~ pour mettre un bracelet électronique.") end
+                if IsControlJustPressed(1, 51) then
+                    FreezeEntityPosition(PlayerPedId(), true)
+                    MenuBracelet()
                 end
             end
-        end
+            end
         Citizen.Wait(wait)
     end
 end)
